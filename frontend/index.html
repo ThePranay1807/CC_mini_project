@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Library Management System</h1>
+  </header>
+
+  <div class="container">
+    <div class="input-box">
+      <label>Book Title</label>
+      <input type="text" id="title" placeholder="Enter book title">
+    </div>
+    <div class="input-box">
+      <label>Author</label>
+      <input type="text" id="author" placeholder="Enter author name">
+    </div>
+    <div class="input-box">
+      <label>Genre</label>
+      <select id="genre">
+        <option value="fiction">Fiction</option>
+        <option value="nonfiction">Non-Fiction</option>
+        <option value="science">Science</option>
+        <option value="history">History</option>
+        <option value="biography">Biography</option>
+        <option value="others">Others</option>
+      </select>
+    </div>
+    <div class="input-box">
+      <label>Issue Date</label>
+      <input type="date" id="issueDate">
+    </div>
+    <div class="input-box">
+      <label>Return Date</label>
+      <input type="date" id="returnDate">
+    </div>
+
+    <button id="addBtn">Add Book Record</button>
+  </div>
+
+  <script>
+    document.getElementById('addBtn').addEventListener('click', function() {
+      const title = document.getElementById('title').value;
+      const author = document.getElementById('author').value;
+      const genre = document.getElementById('genre').value;
+      const issueDate = document.getElementById('issueDate').value;
+      const returnDate = document.getElementById('returnDate').value;
+
+      // Replace this with your EC2 public IP and backend endpoint
+      fetch('http://13.235.48.75:3000/addBook', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ title, author, genre, issueDate, returnDate })
+      })
+      .then(res => res.text())
+      .then(msg => alert(msg))
+      .catch(err => alert('Error: ' + err));
+
+      // Reset input fields
+      document.getElementById('title').value = '';
+      document.getElementById('author').value = '';
+      document.getElementById('genre').value = 'fiction';
+      document.getElementById('issueDate').value = '';
+      document.getElementById('returnDate').value = '';
+    });
+  </script>
+</body>
+</html>
