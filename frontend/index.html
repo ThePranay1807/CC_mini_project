@@ -52,7 +52,7 @@
       const returnDate = document.getElementById('returnDate').value;
 
       // Replace this with your EC2 public IP and backend endpoint
-      fetch('http://3.110.118.220:3000/addBook', {
+      fetch('http://13.126.224.157:3000/addBook', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ title, author, genre, issueDate, returnDate })
