@@ -32,7 +32,7 @@ app.post('/addBook', async (req, res) => {
     }
 
     const params = {
-        TableName: 'LibraryRecords',
+        TableName: 'LibraryBooks',
         Item: {
             BookID: uuidv4(),
             Title: title,
